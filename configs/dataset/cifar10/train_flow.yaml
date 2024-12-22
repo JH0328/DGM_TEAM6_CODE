@@ -1,0 +1,32 @@
+# DDPM config used for DDPM training
+flow:
+  data:
+    root: "/workspace/main/datasets/"   # Dataset root
+    name: "cifar10"   # Dataset name (check main/util.py `get_dataset` for a registry)
+    image_size: 32   # Image resolution
+    hflip: True   # Whether to use horizontal flip
+    n_channels: 3   # Num input channels
+    norm: False   # Whether to scale data between [-1, 1]
+
+  model:   # UNet specific params. Check the DDPM implementation for details on these
+    n_flow: 32
+    n_block: 3
+    affine: True
+
+  training:
+    seed: 0   # Random seed
+    batch_size: 256   # Training batch size (per GPU, per TPU core if using distributed training)
+    epochs: 100000   # Max number of epochs
+    log_step: 10   # log interval
+    device: "gpu:0,1,2,3"   # Device. Uses TPU/CPU if set to `tpu` or `cpu`. For GPU, use gpu:<comma separated id list>. Ex: gpu:0,1 would run only on gpus 0 and 1 
+    chkpt_interval: 1   # Number of epochs between two checkpoints
+    optimizer: "Adam"   # Optimizer
+    lr: 1e-4   # Learning rate
+    restore_path: ""   # Checkpoint restore path
+    # vae_chkpt_path: "/HSH/home/lab05/DiffuseVAE/main/pretrained/vae_cifar10_loss=0.00.ckpt"   # VAE checkpoint path. Useful when using form1 or form2
+    vae_chkpt_path: "/workspace/main/outputs/2024-11-22/05-49-03/results/checkpoints/vae--epoch=999-train_loss=0.0000.ckpt"   # VAE checkpoint path. Useful when using form1 or form2
+    results_dir: "./results/"   # Directory to store the checkpoint in
+    workers: 8   # Num workers
+    grad_clip: 1.0   # gradient clipping threshold
+    chkpt_prefix: ""   # prefix appended to the checkpoint name
+    n_anneal_steps: 5000   # number of warmup steps
