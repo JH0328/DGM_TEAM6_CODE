@@ -43,26 +43,13 @@ python sample_cond_flow_ddpm.py
 ``` 
 
 # Sampling Results 2000epoch
-Inception Score, Fréchet Inception Distance, 50K sampling Time
-1. VANILLA DiffuseVAE
-	IS  9.61890303069825 ± 0.1117982889566477
-	FID 3.8238908881344855
-	Time 1.16 hr
+| **Model**                                   | **Inception Score (IS)**        | **Fréchet Inception Distance (FID)** | **Sampling Time** |
+|---------------------------------------------|---------------------------------|---------------------------------------|-------------------|
+| **VANILLA DiffuseVAE**                      | 9.6189 ± 0.1118                 | 3.8239                                | 1.16 hr           |
+| **Joint end-to-end**                        | 8.8551 ± 0.1201                 | 6.1383                                | 2.43 hr           |
+| **Adaptive Condition model**                | 9.3935 ± 0.1057                 | 4.2597                                | 1.48 hr           |
+| **Adaptive Condition With Flow based model**| 9.5373 ± 0.1136                 | 4.7374                                | 4.86 hr           |
 
-2. Joint end-to-end 
-	IS  8.855085444074216 ± 0.12010746053058496
-	FID 6.138252127239014
-	time 2.43 hr
-	
-3. Adaptive Condition model
-	IS  9.393495792280843 ± 0.10574670689662867
-	FID 4.25968282086194
-	time 1.48 hr
-
-4. Adaptive Condition With Flow based model
-	IS  9.53732209902916 ± 0.11355254137873153
-	FID 4.737415015767681
-	time 4.86 hr
 
 
 ## Citing
